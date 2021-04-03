@@ -24,42 +24,19 @@ const Board = styled.div`
     height: 100%;
 `;
 
-const Box = ({ categories, category, list, updateList }) => {
+const Box = ({ category, list, updateList }) => {
 
-    const sortedCard = () => {
-        const sorted = {
-            'Sea': [],
-            'Sky': []
-        };
-
-        // categories.forEach((category) => {
-        //     sorted[category] = [];
-        // });
-
-        list.forEach(data => sorted[data.category].push(data));
-
-        return (
-            <>{Object.keys(sorted).length !== 0
-                ? sorted[category].map(card => (
-                    <Card
-                        key={card.id}
-                        cardInfo={card}
-                        onDragStart={onDragStart}
-                    />))
-                : null}</>
-        );
-    };
-
-    const onDragStart = (ev, id) => {
-        ev.dataTransfer.setData('id', id);
+    const onDragStart = (ev, id, categoryFrom) => {
+        ev.dataTransfer.setData('info', JSON.stringify({ 'id': id, 'categoryFrom': categoryFrom }));
     };
 
     const onDragOver = (ev) => {
         ev.preventDefault();
     };
 
-    const onDrop = (ev, category) => {
-        updateList(ev.dataTransfer.getData('id'), category);
+    const onDrop = (ev, categoryTo) => {
+        const parsedInfo = JSON.parse(ev.dataTransfer.getData('info'));
+        updateList(parsedInfo.id, parsedInfo.categoryFrom, categoryTo);
     };
 
     return (
@@ -69,7 +46,13 @@ const Box = ({ categories, category, list, updateList }) => {
                 onDragOver={ev => onDragOver(ev)}
                 onDrop={ev => onDrop(ev, category)}
             >
-                {list && list.length ? sortedCard() : null}
+                {list && Object.keys(list).length !== 0 ? list[category].map(card => (
+                    <Card
+                        key={card.id}
+                        cardInfo={card}
+                        onDragStart={onDragStart}
+                    />))
+                    : null}
             </Board>
         </Wrapper>
     );

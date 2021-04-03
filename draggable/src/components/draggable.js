@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Box from './box';
 
@@ -24,16 +24,39 @@ const data = [
 ];
 
 const Draggable = () => {
-    const [list, setList] = useState(data);
+    const [list, setList] = useState(null);
 
-    const updateList = (id, category) => {
-        const updated = list.map(card => {
-            if (card.id === id) {
-                return { ...card, category };
-            };
-            return card;
+    useEffect(() => {
+        const sorted = {};
+
+        categories.forEach((category) => {
+            sorted[category] = [];
         });
-        setList(updated);
+
+        data.forEach(card => sorted[card.category].push(card));
+        setList(sorted);
+    }, []);
+
+    const updateList = (id, categoryFrom, categoryTo) => {
+        const copied = { ...list };
+        const formList = copied[categoryFrom];
+        const updatedIdx = formList.findIndex(card => card.id === id);
+        const removed = formList.splice(updatedIdx, 1)[0];
+
+        if (categoryFrom === categoryTo) {
+            // card that moves up and down.
+        } else {
+            setList(prev => {
+                return {
+                    ...prev,
+                    [categoryTo]: [
+                        ...prev[categoryTo],
+                        { ...removed, category: categoryTo }
+                    ],
+                    [categoryFrom]: formList
+                };
+            });
+        }
     };
 
     return (
@@ -43,7 +66,6 @@ const Draggable = () => {
                 {categories.map(category =>
                     < Box
                         key={category}
-                        categories={categories}
                         category={category}
                         list={list}
                         updateList={updateList}
