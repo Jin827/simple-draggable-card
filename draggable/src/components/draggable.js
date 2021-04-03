@@ -43,7 +43,6 @@ const Draggable = () => {
                 {categories.map(category =>
                     < Box
                         key={category}
-                        categories={categories}
                         category={category}
                         list={list}
                         updateList={updateList}
