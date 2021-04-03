@@ -8,6 +8,9 @@ const Wrapper = styled.div`
     background: ${({ color, theme }) => color || theme.colors.white};
     cursor: pointer;
     margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Card = ({ cardInfo: { id, name, bgColor }, onDragStart }) => (
