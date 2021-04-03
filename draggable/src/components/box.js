@@ -6,6 +6,7 @@ const Card = styled.div`
     width: 100px;
     height: 100px;
     background: ${({ theme }) => theme.colors.mainBlue};
+    cursor: pointer;
 `;
 
 const Box = () => {
