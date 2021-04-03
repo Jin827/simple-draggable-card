@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
 const Card = ({ cardInfo: { id, name, bgColor }, onDragStart }) => (
     <Wrapper
+        data-cy="card"
         onDragStart={ev => onDragStart(ev, id)}
         draggable
         color={bgColor}
