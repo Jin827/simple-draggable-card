@@ -1,5 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import styled from 'styled-components';
+import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 import Draggable from './components/draggable';
 import Footer from './footer';
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
 
 const App = () => (
   <ThemeProvider theme={theme}>
+    <GlobalStyles />
     <Wrapper>
       <Draggable />
       <Footer />
