@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import theme from './styles/theme';
 
 const Wrapper = styled.footer`
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    background: ${({ theme }) => theme.colors.gray200};
+    background: ${({ theme }) => theme.colors.gray100};
     color: ${({ theme }) => theme.colors.white};
     text-align: center;
     height: 3em;

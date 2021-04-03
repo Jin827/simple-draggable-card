@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import styled from 'styled-components';
 import theme from './styles/theme';
-import DraggableIndex from './components/index';
+import Draggable from './components/draggable';
 import Footer from './footer';
 
 const Wrapper = styled.div`
@@ -10,15 +10,14 @@ const Wrapper = styled.div`
   width: 100vw;
 `;
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Wrapper>
-        <DraggableIndex />
-        <Footer />
-      </Wrapper>
-    </ThemeProvider>
-  );
-}
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <Wrapper>
+      <Draggable />
+      <Footer />
+    </Wrapper>
+  </ThemeProvider>
+);
+
 
 export default App;
