@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Card from './card';
 
@@ -24,17 +24,13 @@ const Board = styled.div`
     height: 100%;
 `;
 
-const Box = ({ categories, category, list, updateList }) => {
+const Box = ({ category, list, updateList }) => {
 
     const sortedCard = () => {
         const sorted = {
             'Sea': [],
             'Sky': []
         };
-
-        // categories.forEach((category) => {
-        //     sorted[category] = [];
-        // });
 
         list.forEach(data => sorted[data.category].push(data));
 
