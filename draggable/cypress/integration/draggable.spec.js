@@ -12,17 +12,15 @@ describe('Draggable page', () => {
             .should('contain', 'Sky');
 
         cy.get('[data-cy="boards"] > div').eq(0).within(() => {
-            cy.get('[data-cy="board"]')
-                .children('[data-cy="card"]')
+            cy.get('[data-cy="card"]')
                 .should('have.length', 1);
 
-            cy.get('[data-cy="board"]')
-                .should('not.have.value', 'Jiah Lee');
+            cy.get('[data-cy="card"]').first()
+                .should('be.visible', 'Jiah Lee');
         });
 
         cy.get('[data-cy="boards"] > div').eq(1).within(() => {
-            cy.get('[data-cy="board"]')
-                .children('[data-cy="card"]')
+            cy.get('[data-cy="card"]')
                 .should('have.length', 2);
         });
     });
@@ -30,18 +28,14 @@ describe('Draggable page', () => {
     it('Card is dragged to another board.', () => {
 
         cy.get('[data-cy="boards"]').within(() => {
-            const draggable = cy.get('[data-cy="board-Sea"]').children('[data-cy="card"]').eq(0);
-            draggable.should('have.value', 'Jiah Lee');
+            const draggable = cy.get('[data-cy="board-Sea"]').find('[data-cy="card"]').first();
+            draggable.should('be.visible', 'Jiah Lee');
 
             const droppable = cy.get('[data-cy="board-Sky"]');
-            droppable.should('have.value', 'La vie est belle');
+            droppable.should('be.visible', 'La vie est belle');
 
             cy.wait(3000);
             draggable.dragTo(droppable);
-
-
-
-
         });
 
         cy.wait(1000);
