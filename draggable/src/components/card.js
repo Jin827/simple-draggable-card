@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Wrapper = styled.div`
     display: block;     
@@ -15,10 +15,10 @@ const Wrapper = styled.div`
 
 const Card = ({ cardInfo: { id, name, bgColor }, onDragStart }) => (
     <Wrapper
-        data-cy="card"
-        onDragStart={ev => onDragStart(ev, id)}
-        draggable
         color={bgColor}
+        data-cy="card"
+        draggable
+        onDragStart={ev => onDragStart(ev, id)}
     >
         <p>{name}</p>
     </Wrapper>

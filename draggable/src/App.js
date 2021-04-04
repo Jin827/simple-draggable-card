@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 import Draggable from './components/draggable';

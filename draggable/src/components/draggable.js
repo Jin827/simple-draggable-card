@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Box from './box';
 
 const Heading = styled.h1`
@@ -16,7 +16,7 @@ const categories = ['Sea', 'Sky'];
 const data = [
     { id: 'k1', name: 'Jiah Lee', category: 'Sea', bgColor: 'LightSalmon' },
     {
-        id: 'k2', name: `La vie est bell`, category: 'Sky', bgColor: 'skyblue'
+        id: 'k2', name: `La vie est belle`, category: 'Sky', bgColor: 'skyblue'
     },
     {
         id: 'k3', name: `Vivre ce moment`, category: 'Sky', bgColor: 'pink'
@@ -39,7 +39,7 @@ const Draggable = () => {
     return (
         <>
             <Heading>Drag around the card !</Heading>
-            <BoxWrapper>
+            <BoxWrapper data-cy="boards">
                 {categories.map(category =>
                     < Box
                         key={category}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import Card from './card';
 
 
@@ -62,6 +62,7 @@ const Box = ({ category, list, updateList }) => {
         <Wrapper>
             <span>{category}</span>
             <Board
+                data-cy={`board-${category}`}
                 onDragOver={ev => onDragOver(ev)}
                 onDrop={ev => onDrop(ev, category)}
             >
